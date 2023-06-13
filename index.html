@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>login form</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <center>
+        <div class="container m-5 border border-dark border-1">
+            <h1 id="account">create your account </h1>
+            <form>
+                <input id="user-fname" type="text" placeholder="first name" required>
+                <input id="user-lname" type="text" placeholder="last name" required>
+                <br><br>
+                <input id="user-email" type="email" placeholder="Email address" required>
+                <br>
+                <h4>you can use letters, numbers, and periods</h4>
+                <h3 class="text-primary">use my current email instead</h3>
+                <br>
+                <input id="user-pass" type="password" placeholder="password" required>
+                <input id="user-cfmpass" type="password" placeholder="confirm password" required>
+                <p class="text-danger text-monospace" id="error"></p>
+                <h5>use 8 or more characters with a mix of letters, numbers, and symbols</h5>
+                <br>
+                <button type="button" onclick="clr()" class="btn btn-primary btn-md">clear</button>
+                <button type="button" onclick="signup_form()" class="btn btn-danger btn-md">submit</button>
+            </form>
+        </div>
+    </center>
+    <script>
+        let persons=[]
+
+    
+        function clr() {
+            const inputs = document.getElementsByTagName("input");
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].value = "";
+            }
+        }
+   function signup_form() {
+    let username = document.getElementById("user-fname");
+    let userlastname = document.getElementById("user-lname");
+    let useremail = document.getElementById("user-email");
+    let userpassword = document.getElementById("user-pass");
+    let userconfirmpassword = document.getElementById("user-cfmpass");
+
+    if (
+        username.value !== "" &&
+        userlastname.value !== "" &&
+        useremail.value !== "" &&
+        userpassword.value !== "" &&
+        userconfirmpassword.value !== ""
+    ) {
+        if (userpassword.value === userconfirmpassword.value) {
+            document.getElementById("error").innerText = "";
+            console.log("Form is submitted");
+            document.getElementById("account").innerText = "Signin Form";
+            persons.push({
+                name: document.getElementById("user-fname").value,
+                userlastname: document.getElementById("user-lname").value,
+                useremail: document.getElementById("user-email").value,
+                userpassword: document.getElementById("user-pass").value,
+                userconfirmpassword: document.getElementById("user-cfmpass").value,
+            });
+            console.log(persons);
+        } else {
+            document.getElementById("error").innerText =
+                "Password and confirm password must be the same.";
+        }
+    } else {
+        document.getElementById("error").innerText = "Please fill all the fields.";
+    }
+}
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
